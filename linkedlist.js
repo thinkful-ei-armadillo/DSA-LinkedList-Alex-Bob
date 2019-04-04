@@ -12,10 +12,12 @@ class LinkedList {
     this.head = null;
   }
 
+  // O(1) 
   insertFirst(item) {
     this.head = new _Node(item, this.head);
   }
 
+  // O(n)
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
@@ -27,7 +29,7 @@ class LinkedList {
       tempNode.next = new _Node(item, null);
     }
   }
-
+  // O(n)
   insertBefore(item, nextItem) {
     if (!this.head) {
       return null;
@@ -35,7 +37,7 @@ class LinkedList {
     if (this.head.value === nextItem) {
       this.insertFirst(item);
     }
-
+  
     let tempNode = this.head;
     let previousNode = this.head;
 
@@ -50,6 +52,7 @@ class LinkedList {
     previousNode.next = new _Node(item, tempNode);
   }
 
+  // O(n)
   insertAfter(item, prevItem) {
     if (!this.head) {
       return null;
@@ -68,6 +71,7 @@ class LinkedList {
     tempNode.next = new _Node(item, tempNext);
   }
 
+  // O(n)
   insertAt(item, index) {
     if (!this.head) {
       return null;
@@ -88,7 +92,7 @@ class LinkedList {
     }
     previousNode.next = new _Node(item, tempNode);
   }
-
+  // O(n)
   remove(item) {
     if (!this.head) {
       return null;
@@ -112,7 +116,7 @@ class LinkedList {
     }
     previousNode.next = tempNode.next;
   }
-
+  // best case O(1) average case O(n)
   find(item) {
     if (!this.head) {
       return null;
@@ -129,7 +133,7 @@ class LinkedList {
     return tempNode;
   }
 }
-
+// O(1)
 function createCycledList() {
   const CycleList = new LinkedList();
   CycleList.insertFirst('1');
@@ -139,6 +143,7 @@ function createCycledList() {
   return CycleList;
 }
 
+//O(n)
 function display(list) {
   let node = list.head;
   while (node !== null) {
@@ -147,6 +152,7 @@ function display(list) {
   }
 }
 
+// O(n)
 function size(list) {
   let size = 0;
   if(!list.head) {
@@ -160,10 +166,12 @@ function size(list) {
   return size;
 }
 
+// O(1)
 function isEmpty(list) {
   return (list.head === null);
 }
 
+// O(n)
 function findPrevious(list, nextItem) {
   if (!list.head) {
     return null;
@@ -181,6 +189,7 @@ function findPrevious(list, nextItem) {
   return previousNode.value;
 }
 
+// O(n)
 function findLast(list) {
   if (list.head === null) {
     return null;
@@ -193,7 +202,9 @@ function findLast(list) {
   }
   return previousNode.value;
 }
+
 //Problem 5 Reverse a list
+//O(n)
 function reverseList(list) {
   if (list.head === null) {
     return null;
@@ -213,6 +224,7 @@ function reverseList(list) {
   return list;
 }
 //And recursively
+//O(n)
 function reverseListRecursively(list, current, previous=null) {
   if(list.head === null) {
     return null;
@@ -235,7 +247,7 @@ function reverseListRecursively(list, current, previous=null) {
 }
 
 //Problem 6 3rd from the end
-
+// O(n)
 function thirdFromTheEnd(list) {
   if (!list.head) {
     return null;
@@ -255,7 +267,7 @@ function thirdFromTheEnd(list) {
 }
 
 //Problem 7 Middle of a List
-
+// O(n)
 function getMiddle(list) {
   if (!list.head) {
     return null;
@@ -277,7 +289,7 @@ function getMiddle(list) {
 }
 
 //Problem 8 Cycle in a list
-
+// O(n)
 function findCycle(list) {
   if (!list.head) {
     return null;

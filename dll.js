@@ -1,3 +1,5 @@
+'use strict';
+
 class _Node {
   constructor(value, next, prev) {
     this.value = value;
@@ -11,7 +13,7 @@ class DLinkedList {
     this.head = null;
     this.tail = null;
   }
-
+  // O(1)
   insertFirst(item) {
     this.head = new _Node(item, this.head, null);
     if (!this.tail) {
@@ -22,6 +24,7 @@ class DLinkedList {
     }
   }
 
+  // O(n)
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
@@ -35,6 +38,7 @@ class DLinkedList {
     }
   }
 
+  // O(n)
   insertBefore(item, nextItem) {
     if (!this.head) {
       return null;
@@ -57,7 +61,7 @@ class DLinkedList {
     previousNode.next = new _Node(item, tempNode, previousNode);
     tempNode.prev = previousNode.next;
   }
-
+  // O(n)
   insertAfter(item, prevItem) {
     if (!this.head) {
       return null;
@@ -80,7 +84,7 @@ class DLinkedList {
       tempNext.prev = current.next;
     }
   }
-
+  // O(n)
   insertAt(item, index) {
     if (!this.head) {
       return null;
@@ -106,7 +110,7 @@ class DLinkedList {
       current.prev = previous.next;
     }
   }
-
+  // O(n)
   remove(item) {
     if (!this.head) {
       return null;
@@ -135,7 +139,7 @@ class DLinkedList {
       this.tail = previous;
     }
   }
-
+  // O(n)
   find(item) {
     if (!this.head) {
       return null;
@@ -152,7 +156,7 @@ class DLinkedList {
     return tempNode;
   }
 }
-
+// O(n)
 function reverseDList(list) {
   let left = list.head;
   let right = list.tail;
