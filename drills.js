@@ -1,6 +1,7 @@
 'use strict';
 
-const { LinkedList, display, size, isEmpty, findPrevious, findLast, reverseList, reverseListRecursively } = require('./linkedlist');
+const { LinkedList, display, size, isEmpty, findPrevious, 
+  findLast, reverseList, reverseListRecursively, thirdFromTheEnd, getMiddle } = require('./linkedlist');
 
 // Drill #2. Create a singly linked list:
 
@@ -17,7 +18,8 @@ function main() {
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
   SLL.remove('Tauhida');
-  display(reverseListRecursively(SLL));
+  display(SLL);
+  console.log(getMiddle(SLL));
   
   // console.log(size(SLL));
   // console.log(isEmpty(SLL));

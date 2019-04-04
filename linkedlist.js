@@ -139,8 +139,11 @@ function display(list) {
 }
 
 function size(list) {
-  let node = list.head;
   let size = 0;
+  if(!list.head) {
+    return size;
+  }
+  let node = list.head;
   while (node !== null) {
     node = node.next;
     size++;
@@ -153,6 +156,9 @@ function isEmpty(list) {
 }
 
 function findPrevious(list, nextItem) {
+  if (!list.head) {
+    return null;
+  }
   let node = list.head;
   let previousNode = list.head;
   while ((node !== null) && (node.value !== nextItem)) {
@@ -167,11 +173,11 @@ function findPrevious(list, nextItem) {
 }
 
 function findLast(list) {
+  if (list.head === null) {
+    return null;
+  }
   let node = list.head;
   let previousNode;
-  if (list.head === null) {
-    return;
-  }
   while (node !== null) {
     previousNode = node;
     node = node.next;
@@ -180,6 +186,9 @@ function findLast(list) {
 }
 //Problem 5 Reverse a list
 function reverseList(list) {
+  if (list.head === null) {
+    return null;
+  }
   // <- A  B -> C -> D
   // A <- B <- C <- D
   let current = list.head;
@@ -196,6 +205,9 @@ function reverseList(list) {
 }
 //And recursively
 function reverseListRecursively(list, current, previous=null) {
+  if(list.head === null) {
+    return null;
+  }
   
   if (!current) {
     current = list.head;
@@ -215,6 +227,47 @@ function reverseListRecursively(list, current, previous=null) {
 
 //Problem 6 3rd from the end
 
+function thirdFromTheEnd(list) {
+  if (!list.head) {
+    return null;
+  }
+  if (!(list.head && list.head.next.next && list.head.next.next.next)) {
+    console.log('list is not long enough');
+    return null;
+  }
+  let current = list.head;
+  while (current !== null) {
+    
+    if (current.next.next.next.next === null) {
+      return current.value;
+    }
+    current = current.next;
+  }
+}
+
+//Problem 7 Middle of a List
+
+function getMiddle(list) {
+  if (!list.head) {
+    return null;
+  }
+  let current = list.head;
+  let fastCounter = list.head;
+  while (fastCounter !== null) {
+    if (fastCounter.next !== null){
+      fastCounter = fastCounter.next.next;
+    } 
+    else {
+      return current.value;
+    }
+    if (current.next !== null){
+      current = current.next;
+    }
+  }
+  return current.value;
+}
+
+
 module.exports = {
   LinkedList,
   display,
@@ -223,5 +276,7 @@ module.exports = {
   findPrevious,
   findLast,
   reverseList,
-  reverseListRecursively
+  reverseListRecursively,
+  thirdFromTheEnd,
+  getMiddle
 };
