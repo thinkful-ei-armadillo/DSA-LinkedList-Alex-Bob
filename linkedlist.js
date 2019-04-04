@@ -130,6 +130,15 @@ class LinkedList {
   }
 }
 
+function createCycledList() {
+  const CycleList = new LinkedList();
+  CycleList.insertFirst('1');
+  CycleList.insertFirst('2');
+  const last = CycleList.head.next;
+  last.next = new _Node('3', CycleList.head);
+  return CycleList;
+}
+
 function display(list) {
   let node = list.head;
   while (node !== null) {
@@ -267,6 +276,25 @@ function getMiddle(list) {
   return current.value;
 }
 
+//Problem 8 Cycle in a list
+
+function findCycle(list) {
+  if (!list.head) {
+    return null;
+  }
+  let current = list.head;
+  let fastCounter = list.head;
+  do {
+    if (fastCounter.next !== null && fastCounter.next.next !== null) {
+      fastCounter = fastCounter.next.next;
+    } else {
+      return false;
+    }
+    current = current.next;
+  } while (fastCounter.value !== current.value);
+  return true;
+}
+
 
 module.exports = {
   LinkedList,
@@ -278,5 +306,7 @@ module.exports = {
   reverseList,
   reverseListRecursively,
   thirdFromTheEnd,
-  getMiddle
+  getMiddle,
+  findCycle,
+  createCycledList
 };

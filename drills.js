@@ -1,7 +1,10 @@
 'use strict';
 
 const { LinkedList, display, size, isEmpty, findPrevious, 
-  findLast, reverseList, reverseListRecursively, thirdFromTheEnd, getMiddle } = require('./linkedlist');
+  findLast, reverseList, reverseListRecursively, thirdFromTheEnd, getMiddle,
+  findCycle, createCycledList } = require('./linkedlist');
+
+const { DLinkedList, reverseDList } = require('./dll');
 
 // Drill #2. Create a singly linked list:
 
@@ -18,16 +21,18 @@ function main() {
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
   SLL.remove('Tauhida');
-  display(SLL);
-  console.log(getMiddle(SLL));
-  
+  // console.log(getMiddle(SLL));
   // console.log(size(SLL));
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Kat'));
   //console.log(findLast(SLL));
+
+  // const CycleList = createCycledList();
+  // console.log(findCycle(CycleList));
+  // console.log(findCycle(SLL));
 }
 
-main();
+// main();
 
 //Drill #4 Mystery Program
 
@@ -52,3 +57,16 @@ main();
 
 // The program goes over a linked list and removes all duplicate values
 // WhatDoesThisProgramDo(SLL);
+
+function mainDLL() {
+  const DLL = new DLinkedList();
+  DLL.insertFirst('Aquaria');
+  DLL.insertLast('Caprica');
+  DLL.insertLast('Gemenon');
+  DLL.insertLast('Picon');
+  DLL.insertLast('Sagittaron');
+  DLL.insertLast('Tauron');
+  DLL.remove('Picon');
+}
+
+mainDLL();
