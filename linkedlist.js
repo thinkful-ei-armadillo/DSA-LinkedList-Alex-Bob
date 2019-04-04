@@ -26,6 +26,67 @@ class LinkedList {
     }
   }
 
+  insertBefore(item, nextItem) {
+    if (!this.head) {
+      return null;
+    }
+    if (this.head.value === nextItem) {
+      this.insertFirst(item);
+    }
+
+    let tempNode = this.head;
+    let previousNode = this.head;
+
+    while ((tempNode !== null) && (tempNode.value !== nextItem)) {
+      previousNode = tempNode;
+      tempNode = tempNode.next;
+    }
+    if (tempNode === null) {
+      console.log('Item not found');
+      return;
+    }
+    previousNode.next = new _Node(item, tempNode);
+  }
+
+  insertAfter(item, prevItem) {
+    if (!this.head) {
+      return null;
+    }
+    
+    let tempNode = this.head;
+
+    while ((tempNode !== null) && (tempNode.value !== prevItem)) {
+      tempNode = tempNode.next;
+    }
+    if (tempNode === null) {
+      console.log('Item not found');
+      return;
+    }
+    const tempNext = tempNode.next;
+    tempNode.next = new _Node(item, tempNext);
+  }
+
+  insertAt(item, index) {
+    if (!this.head) {
+      return null;
+    }
+
+    let tempNode = this.head;
+    let previousNode = this.head;
+    let tempIndex = 0;
+
+    while((tempNode !== null) && (tempIndex !== index)) {
+      previousNode = tempNode;
+      tempNode = tempNode.next;
+      tempIndex++;
+    }
+    if (tempNode === null && tempIndex !== index) {
+      console.log('Index not available');
+      return;
+    }
+    previousNode.next = new _Node(item, tempNode);
+  }
+
   remove(item) {
     if (!this.head) {
       return null;
@@ -44,7 +105,7 @@ class LinkedList {
       tempNode = tempNode.next;
     }
     if (tempNode === null) {
-      console.log('Item not found');
+      console.log(`Can't remove, ${item} not found`);
       return;
     }
     previousNode.next = tempNode.next;
@@ -67,4 +128,60 @@ class LinkedList {
   }
 }
 
-module.exports = LinkedList;
+function display(list) {
+  let node = list.head;
+  while (node !== null) {
+    console.log(node.value);
+    node = node.next;
+  }
+}
+
+function size(list) {
+  let node = list.head;
+  let size = 0;
+  while (node !== null) {
+    node = node.next;
+    size++;
+  }
+  return size;
+}
+
+function isEmpty(list) {
+  return (list.head === null);
+}
+
+function findPrevious(list, nextItem) {
+  let node = list.head;
+  let previousNode = list.head;
+  while ((node !== null) && (node.value !== nextItem)) {
+    previousNode = node;
+    node = node.next;
+  }
+  if (node === null) {
+    console.log('Item not found');
+    return;
+  }
+  return previousNode.value;
+}
+
+function findLast(list) {
+  let node = list.head;
+  let previousNode;
+  if (list.head === null) {
+    return;
+  }
+  while (node !== null) {
+    previousNode = node;
+    node = node.next;
+  }
+  return previousNode.value;
+}
+
+module.exports = {
+  LinkedList,
+  display,
+  size,
+  isEmpty,
+  findPrevious,
+  findLast
+};
