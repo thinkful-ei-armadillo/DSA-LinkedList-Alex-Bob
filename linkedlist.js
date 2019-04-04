@@ -1,3 +1,5 @@
+'use strict';
+
 class _Node {
   constructor(value, next) {
     this.value = value;
@@ -176,6 +178,42 @@ function findLast(list) {
   }
   return previousNode.value;
 }
+//Problem 5 Reverse a list
+function reverseList(list) {
+  // <- A  B -> C -> D
+  // A <- B <- C <- D
+  let current = list.head;
+  let previous = null;
+  let next = null;
+  while(current !== null) {
+    next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+  list.head = previous;
+  return list;
+}
+//And recursively
+function reverseListRecursively(list, current, previous=null) {
+  
+  if (!current) {
+    current = list.head;
+  }
+
+  if(current.next === null) {
+    current.next = previous;
+    list.head = current;
+    return list;
+  }
+
+  const next = current.next;
+  current.next = previous;
+  return reverseListRecursively(list, next, current);
+
+}
+
+//Problem 6 3rd from the end
 
 module.exports = {
   LinkedList,
@@ -183,5 +221,7 @@ module.exports = {
   size,
   isEmpty,
   findPrevious,
-  findLast
+  findLast,
+  reverseList,
+  reverseListRecursively
 };
